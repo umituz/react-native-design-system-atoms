@@ -16,7 +16,7 @@
 
 import React from 'react';
 import { View, StyleSheet, ViewStyle, DimensionValue, Text } from 'react-native';
-import { useAppDesignTokens } from '@umituz/react-native-theme';
+import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
 
 // =============================================================================
 // TYPE DEFINITIONS

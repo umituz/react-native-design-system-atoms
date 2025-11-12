@@ -33,7 +33,7 @@
 
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, StyleProp, ViewStyle, TextStyle } from 'react-native';
-import { useAppDesignTokens } from '@umituz/react-native-theme';
+import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
 import { AtomicText } from './AtomicText';
 
 export type AtomicTextAreaVariant = 'outlined' | 'filled' | 'flat';

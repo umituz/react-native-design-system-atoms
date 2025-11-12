@@ -18,7 +18,7 @@ import React from 'react';
 import { View, StyleSheet, ViewStyle, ImageStyle } from 'react-native';
 import { AtomicImage } from './AtomicImage';
 import { AtomicText } from './AtomicText';
-import { useAppDesignTokens } from '@umituz/react-native-theme';
+import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
 
 // =============================================================================
 // TYPE DEFINITIONS

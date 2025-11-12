@@ -1,5 +1,5 @@
 import { ViewStyle, TextStyle } from 'react-native';
-import { useAppDesignTokens } from '@umituz/react-native-theme';
+import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
 import { AtomicInputVariant, AtomicInputSize, AtomicInputState } from '../types';
 
 type DesignTokens = ReturnType<typeof useAppDesignTokens>;

@@ -49,7 +49,7 @@ import {
 } from 'react-native';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useAppDesignTokens } from '@umituz/react-native-theme';
+import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
 import { AtomicIcon, type AtomicIconColor } from './AtomicIcon';
 // @ts-ignore - Peer dependency, types may not be available during typecheck
 import { BottomSheetModal, useBottomSheetModal } from '@umituz/react-native-bottom-sheet';

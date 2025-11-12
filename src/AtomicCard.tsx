@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleProp, ViewStyle, Pressable } from 'react-native';
-import { useAppDesignTokens } from '@umituz/react-native-theme';
+import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
 
 export type AtomicCardVariant = 'flat' | 'elevated' | 'outlined';
 export type AtomicCardPadding = 'none' | 'sm' | 'md' | 'lg' | 'xl';

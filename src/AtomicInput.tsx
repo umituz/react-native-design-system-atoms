@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Pressable, StyleSheet, StyleProp, ViewStyle, TextStyle } from 'react-native';
-import { useAppDesignTokens } from '@umituz/react-native-theme';
+import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
 import { AtomicIcon } from './AtomicIcon';
 import { AtomicText } from './AtomicText';
 import type { AtomicIconName, AtomicIconSize } from './AtomicIcon';

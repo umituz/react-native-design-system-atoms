@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, View, TouchableOpacity, ViewStyle } from 'react-native';
-import { useAppDesignTokens } from '@umituz/react-native-theme';
+import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
 import { AtomicChip } from './AtomicChip';
 import { AtomicText } from './AtomicText';
 import { AtomicIcon } from './AtomicIcon';

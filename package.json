@@ -27,8 +27,8 @@
   "peerDependencies": {
     "@umituz/react-native-design-system-responsive": "*",
     "@umituz/react-native-icon": "*",
-    "@umituz/react-native-theme": "*",
-    "@umituz/react-native-typography": "*",
+    "@umituz/react-native-design-system-theme": "*",
+    "@umituz/react-native-design-system-typography": "*",
     "@expo/vector-icons": ">=14.0.0",
     "@gorhom/bottom-sheet": ">=5.0.0",
     "@react-native-community/datetimepicker": "^8.5.0",

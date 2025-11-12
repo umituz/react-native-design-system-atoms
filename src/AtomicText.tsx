@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, StyleProp, TextStyle } from 'react-native';
-import { useAppDesignTokens } from '@umituz/react-native-theme';
-import type { TextStyleVariant, ColorVariant } from '@umituz/react-native-typography';
-import { getTextColor } from '@umituz/react-native-typography';
+import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
+import type { TextStyleVariant, ColorVariant } from '@umituz/react-native-design-system-typography';
+import { getTextColor } from '@umituz/react-native-design-system-typography';
 
 export interface AtomicTextProps {
   children: React.ReactNode;

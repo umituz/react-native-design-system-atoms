@@ -7,7 +7,7 @@ Atomic design components for React Native - Primitive UI components following Ma
 - 🎨 **Material Design 3** - Modern, accessible UI components
 - ⚛️ **Pure React Native** - No external UI library dependencies
 - 🧬 **Atomic Design** - Primitive components (atoms)
-- 🌓 **Theme Support** - Built-in light/dark mode via `@umituz/react-native-theme`
+- 🌓 **Theme Support** - Built-in light/dark mode via `@umituz/react-native-design-system-theme`
 - 📱 **Responsive** - Adaptive layouts for phones and tablets
 - ♿ **Accessible** - WCAG AA compliant components
 - 📦 **Zero Config** - Works out of the box
@@ -22,7 +22,7 @@ npm install @umituz/react-native-design-system-atoms
 ### Peer Dependencies
 
 ```bash
-npm install @umituz/react-native-theme @umituz/react-native-icon @umituz/react-native-typography
+npm install @umituz/react-native-design-system-theme @umituz/react-native-icon @umituz/react-native-design-system-typography
 npm install react@18.3.1 react-native@0.76.3 react-native-reanimated@~3.10.1 react-native-svg@^15.0.0
 ```
 
@@ -83,10 +83,10 @@ const MyComponent = () => {
 
 ## 🌓 Theme Integration
 
-This package requires `@umituz/react-native-theme`:
+This package requires `@umituz/react-native-design-system-theme`:
 
 ```typescript
-import { ThemeProvider } from '@umituz/react-native-theme';
+import { ThemeProvider } from '@umituz/react-native-design-system-theme';
 import { AtomicButton } from '@umituz/react-native-design-system-atoms';
 
 const App = () => (

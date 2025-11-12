@@ -1,6 +1,6 @@
 import { ViewStyle } from 'react-native';
 import { FabVariant, FabSize, FabVariantConfig, FabSizeConfig } from '../types';
-import type { DesignTokens } from '@umituz/react-native-theme';
+import type { DesignTokens } from '@umituz/react-native-design-system-theme';
 
 /**
  * Material Design 3 FAB size configurations

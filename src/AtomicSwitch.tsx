@@ -16,7 +16,7 @@
 
 import React from 'react';
 import { Switch, SwitchProps, StyleSheet, ViewStyle } from 'react-native';
-import { useAppDesignTokens } from '@umituz/react-native-theme';
+import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
 
 // =============================================================================
 // TYPE DEFINITIONS
