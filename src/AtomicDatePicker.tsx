@@ -37,23 +37,19 @@
  * @module AtomicDatePicker
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
-  useWindowDimensions,
+  Platform,
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
 import { AtomicIcon, type AtomicIconColor } from './AtomicIcon';
-// @ts-ignore - Peer dependency, types may not be available during typecheck
-import { BottomSheetModal, useBottomSheetModal } from '@umituz/react-native-bottom-sheet';
-import { AtomicButton } from './AtomicButton';
 
 /**
  * Props for AtomicDatePicker component
@@ -107,42 +103,36 @@ export const AtomicDatePicker: React.FC<AtomicDatePickerProps> = ({
   style,
 }) => {
   const tokens = useAppDesignTokens();
-  const { height } = useWindowDimensions();
-  const insets = useSafeAreaInsets();
-  const { modalRef, present, dismiss } = useBottomSheetModal();
-  const [tempDate, setTempDate] = useState<Date>(value ?? new Date());
-
-  // Update tempDate when value prop changes
-  useEffect(() => {
-    if (value) {
-      setTempDate(value);
-    }
-  }, [value]);
+  const [showPicker, setShowPicker] = useState(false);
 
   /**
    * Handle date/time change in picker
-   * Updates temporary date state (not final until Done is pressed)
+   * On Android, directly apply the change. On iOS, show picker and apply on confirm.
    */
   const handleChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
-    if (event.type === 'set' && selectedDate) {
-      setTempDate(selectedDate);
+    if (Platform.OS === 'android') {
+      setShowPicker(false);
+      if (event.type === 'set' && selectedDate) {
+        onChange(selectedDate);
+      }
+    } else {
+      // iOS: Show picker inline, user confirms with Done button
+      if (event.type === 'set' && selectedDate) {
+        onChange(selectedDate);
+      }
     }
   };
 
   /**
-   * Handle Done button - apply selected date and close sheet
-   */
-  const handleDone = () => {
-    onChange(tempDate);
-    dismiss();
-  };
-
-  /**
-   * Handle open - reset temp date to current value
+   * Handle open - show native picker
    */
   const handleOpen = () => {
-    setTempDate(value ?? new Date());
-    present();
+    if (Platform.OS === 'android') {
+      setShowPicker(true);
+    } else {
+      // iOS: Show picker inline
+      setShowPicker(true);
+    }
   };
 
   /**
@@ -187,7 +177,7 @@ export const AtomicDatePicker: React.FC<AtomicDatePickerProps> = ({
     return 'primary';
   };
 
-  const styles = getStyles(tokens, height, insets);
+  const styles = getStyles(tokens);
 
   return (
     <View style={[styles.container, style]} testID={testID}>
@@ -232,39 +222,18 @@ export const AtomicDatePicker: React.FC<AtomicDatePickerProps> = ({
         </Text>
       )}
 
-      {/* Bottom Sheet DatePicker */}
-      <BottomSheetModal
-        ref={modalRef}
-        preset="medium"
-        enableBackdrop
-        enablePanDownToClose
-        enableHandleIndicator
-        onDismiss={() => {
-          // Reset temp date when closed without saving
-          setTempDate(value ?? new Date());
-        }}
-      >
-        <View style={styles.bottomSheetContent}>
-          <DateTimePicker
-            value={tempDate}
-            mode={mode}
-            display="spinner"
-            onChange={handleChange}
-            minimumDate={minimumDate}
-            maximumDate={maximumDate}
-            testID={testID ? `${testID}-picker` : undefined}
-          />
-          <View style={styles.buttonContainer}>
-            <AtomicButton
-              title="Done"
-              onPress={handleDone}
-              variant="primary"
-              style={styles.doneButton}
-              testID={testID ? `${testID}-done` : undefined}
-            />
-          </View>
-        </View>
-      </BottomSheetModal>
+      {/* Native DateTimePicker - Simple and reliable */}
+      {showPicker && (
+        <DateTimePicker
+          value={value ?? new Date()}
+          mode={mode}
+          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+          onChange={handleChange}
+          minimumDate={minimumDate}
+          maximumDate={maximumDate}
+          testID={testID ? `${testID}-picker` : undefined}
+        />
+      )}
     </View>
   );
 };
@@ -272,14 +241,7 @@ export const AtomicDatePicker: React.FC<AtomicDatePickerProps> = ({
 /**
  * Get component styles based on design tokens
  */
-const getStyles = (
-  tokens: ReturnType<typeof useAppDesignTokens>,
-  height: number,
-  insets: { top: number; bottom: number; left: number; right: number },
-) => {
-  // Responsive button sizing based on device height
-  const buttonMinWidth = height <= 667 ? Math.min(height * 0.25, 150) : 200;
-
+const getStyles = (tokens: ReturnType<typeof useAppDesignTokens>) => {
   return StyleSheet.create({
     container: {
       marginBottom: tokens.spacing.md,
@@ -326,22 +288,6 @@ const getStyles = (
       color: tokens.colors.error,
       marginTop: tokens.spacing.xs,
       marginLeft: tokens.spacing.xs,
-    },
-    bottomSheetContent: {
-      paddingHorizontal: tokens.spacing.lg,
-      paddingTop: tokens.spacing.md,
-      paddingBottom: Math.max(
-        insets.bottom + tokens.spacing.md,
-        tokens.spacing.xl,
-      ),
-    },
-    buttonContainer: {
-      alignItems: 'center',
-      marginTop: tokens.spacing.lg,
-      paddingHorizontal: tokens.spacing.md,
-    },
-    doneButton: {
-      minWidth: buttonMinWidth,
     },
   });
 };

@@ -1,14 +1,64 @@
 /**
  * AtomicIcon - Atomic Design System Icon Component
  *
- * Wrapper for the universal Icon component from @domains/icons
- * Provides backward compatibility with AtomicIcon naming convention
- * while leveraging the full power of the icons domain architecture.
+ * Direct implementation using lucide-react-native
+ * No unnecessary abstraction layer - simple and efficient
  */
 
 import React from 'react';
-import { Icon } from '@umituz/react-native-icon';
-import type { IconProps, IconSize, IconColor, IconName } from '@umituz/react-native-icon';
+import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
+import * as LucideIcons from 'lucide-react-native';
+import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
+
+export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+export type IconColor =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'error'
+  | 'info'
+  | 'onSurface'
+  | 'surfaceVariant'
+  | 'onPrimary'
+  | 'onSecondary'
+  | 'textInverse';
+
+export type IconName = keyof typeof LucideIcons;
+
+const ICON_SIZES: Record<IconSize, number> = {
+  xs: 16,
+  sm: 20,
+  md: 24,
+  lg: 32,
+  xl: 40,
+  xxl: 48,
+};
+
+export interface IconProps {
+  /** Lucide icon name (PascalCase) */
+  name: IconName;
+  /** Semantic size */
+  size?: IconSize;
+  /** Custom size in pixels (overrides size) */
+  customSize?: number;
+  /** Semantic color */
+  color?: IconColor;
+  /** Custom color (overrides color) */
+  customColor?: string;
+  /** Stroke width */
+  strokeWidth?: number;
+  /** Add background circle */
+  withBackground?: boolean;
+  /** Background color */
+  backgroundColor?: string;
+  /** Accessibility label */
+  accessibilityLabel?: string;
+  /** Test ID */
+  testID?: string;
+  /** Additional styles */
+  style?: StyleProp<ViewStyle>;
+}
 
 /**
  * AtomicIcon Component
@@ -27,13 +77,108 @@ import type { IconProps, IconSize, IconColor, IconName } from '@umituz/react-nat
  * <AtomicIcon name="Info" size="lg" withBackground backgroundColor="#667eea" />
  * ```
  */
-export const AtomicIcon: React.FC<IconProps> = (props) => {
-  return <Icon {...props} />;
+export const AtomicIcon: React.FC<IconProps> = ({
+  name,
+  size = 'md',
+  customSize,
+  color,
+  customColor,
+  strokeWidth,
+  withBackground = false,
+  backgroundColor,
+  accessibilityLabel,
+  testID,
+  style,
+}) => {
+  const tokens = useAppDesignTokens();
+
+  // Get icon component from Lucide
+  const IconComponent = LucideIcons[name] as React.ComponentType<{
+    size?: number;
+    color?: string;
+    strokeWidth?: number;
+    style?: StyleProp<ViewStyle>;
+  }>;
+
+  if (!IconComponent) {
+    /* eslint-disable-next-line no-console */
+    if (__DEV__) {
+      console.warn(`Icon "${name}" not found in Lucide icons`);
+    }
+    return null;
+  }
+
+  // Calculate icon size
+  const iconSize = customSize ?? ICON_SIZES[size];
+
+  // Calculate icon color
+  let iconColor = customColor;
+  if (!iconColor && color) {
+    const colorMap: Record<IconColor, string> = {
+      primary: tokens.colors.primary,
+      secondary: tokens.colors.secondary,
+      success: tokens.colors.success,
+      warning: tokens.colors.warning,
+      error: tokens.colors.error,
+      info: tokens.colors.info,
+      onSurface: tokens.colors.onSurface,
+      surfaceVariant: tokens.colors.surfaceVariant,
+      onPrimary: tokens.colors.onPrimary,
+      onSecondary: tokens.colors.onSecondary,
+      textInverse: tokens.colors.textInverse,
+    };
+    iconColor = colorMap[color] || tokens.colors.textPrimary;
+  }
+
+  // Default color if none specified
+  if (!iconColor) {
+    iconColor = tokens.colors.textPrimary;
+  }
+
+  const iconElement = (
+    <IconComponent
+      size={iconSize}
+      color={iconColor}
+      strokeWidth={strokeWidth}
+      style={style}
+      accessibilityLabel={accessibilityLabel}
+      testID={testID}
+    />
+  );
+
+  if (withBackground) {
+    const bgColor = backgroundColor || tokens.colors.surfaceVariant;
+    return (
+      <View
+        style={[
+          styles.backgroundContainer,
+          {
+            width: iconSize + 16,
+            height: iconSize + 16,
+            borderRadius: (iconSize + 16) / 2,
+            backgroundColor: bgColor,
+          },
+          style,
+        ]}
+        testID={testID}
+        accessibilityLabel={accessibilityLabel}
+      >
+        {iconElement}
+      </View>
+    );
+  }
+
+  return iconElement;
 };
 
-/**
- * Re-export types with Atomic naming convention
- */
+const styles = StyleSheet.create({
+  backgroundContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+// Re-export types with Atomic naming convention for backward compatibility
 export type AtomicIconProps = IconProps;
 export type AtomicIconSize = IconSize;
 export type AtomicIconColor = IconColor;

@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, StyleProp, ViewStyle, TextStyle, TouchableOpacity, View } from 'react-native';
 import { AtomicText } from './AtomicText';
-import { Icon } from '@umituz/react-native-icon';
+import { AtomicIcon } from './AtomicIcon';
 import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
-import type { IconName } from '@umituz/react-native-icon';
+import type { IconName } from './AtomicIcon';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'text' | 'danger';
 export type ButtonSize = 'sm' | 'md' | 'lg';

@@ -1,6 +1,6 @@
 {
   "name": "@umituz/react-native-design-system-atoms",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Atomic design components for React Native - Primitive UI components (buttons, inputs, cards, etc.)",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
@@ -26,19 +26,14 @@
   },
   "peerDependencies": {
     "@umituz/react-native-design-system-responsive": "*",
-    "@umituz/react-native-icon": "*",
     "@umituz/react-native-design-system-theme": "*",
     "@umituz/react-native-design-system-typography": "*",
     "@expo/vector-icons": ">=14.0.0",
-    "@gorhom/bottom-sheet": ">=5.0.0",
     "@react-native-community/datetimepicker": "^8.5.0",
-    "@umituz/react-native-bottom-sheet": "*",
     "expo-linear-gradient": "^15.0.7",
     "lucide-react-native": ">=0.468.0",
     "react": ">=18.2.0 || ^19.0.0",
     "react-native": ">=0.74.0",
-    "react-native-gesture-handler": ">=2.16.0",
-    "react-native-reanimated": "~3.10.1",
     "react-native-safe-area-context": "^5.6.2",
     "react-native-svg": ">=13.0.0"
   },
