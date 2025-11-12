@@ -1,7 +1,7 @@
 import { ViewStyle, TextStyle } from 'react-native';
 import { useAppDesignTokens, type DesignTokens } from '@umituz/react-native-theme';
 import { PickerSize } from '../types';
-import { IOS_HIG, getMinTouchTarget } from '../../../utils/platformConstants';
+import { IOS_HIG, getMinTouchTarget } from '@umituz/react-native-design-system-responsive';
 
 /**
  * Picker container styles with iOS HIG compliance

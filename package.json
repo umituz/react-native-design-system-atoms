@@ -25,6 +25,7 @@
     "url": "https://github.com/umituz/react-native-design-system-atoms"
   },
   "peerDependencies": {
+    "@umituz/react-native-design-system-responsive": "*",
     "@umituz/react-native-icon": "*",
     "@umituz/react-native-theme": "*",
     "@umituz/react-native-typography": "*",
