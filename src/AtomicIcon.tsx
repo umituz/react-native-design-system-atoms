@@ -24,7 +24,7 @@ export type IconColor =
   | 'onSecondary'
   | 'textInverse';
 
-export type IconName = keyof typeof LucideIcons;
+export type IconName = keyof typeof LucideIcons | string;
 
 const ICON_SIZES: Record<IconSize, number> = {
   xs: 16,
@@ -140,9 +140,7 @@ export const AtomicIcon: React.FC<IconProps> = ({
       size={iconSize}
       color={iconColor}
       strokeWidth={strokeWidth}
-      style={style}
-      accessibilityLabel={accessibilityLabel}
-      testID={testID}
+      style={!withBackground ? style : undefined}
     />
   );
 
@@ -168,7 +166,15 @@ export const AtomicIcon: React.FC<IconProps> = ({
     );
   }
 
-  return iconElement;
+  return (
+    <View
+      accessibilityLabel={accessibilityLabel}
+      testID={testID}
+      style={style}
+    >
+      {iconElement}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
