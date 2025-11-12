@@ -3,7 +3,7 @@ import { View, TextInput, Pressable, StyleSheet, StyleProp, ViewStyle, TextStyle
 import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
 import { AtomicIcon } from './AtomicIcon';
 import { AtomicText } from './AtomicText';
-import type { AtomicIconName, AtomicIconSize } from './AtomicIcon';
+import type { IconName, AtomicIconSize } from './AtomicIcon';
 
 export type AtomicInputVariant = 'outlined' | 'filled' | 'flat';
 export type AtomicInputState = 'default' | 'error' | 'success' | 'disabled';
@@ -27,9 +27,9 @@ export interface AtomicInputProps {
   /** Helper text below input */
   helperText?: string;
   /** Leading icon (Lucide icon name) */
-  leadingIcon?: AtomicIconName;
+  leadingIcon?: IconName;
   /** Trailing icon (Lucide icon name) */
-  trailingIcon?: AtomicIconName;
+  trailingIcon?: IconName;
   /** Callback when trailing icon is pressed */
   onTrailingIconPress?: () => void;
   /** Show password toggle for secure inputs */
