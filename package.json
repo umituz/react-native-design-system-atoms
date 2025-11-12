@@ -1,0 +1,68 @@
+{
+  "name": "@umituz/react-native-design-system-atoms",
+  "version": "1.0.0",
+  "description": "Atomic design components for React Native - Primitive UI components (buttons, inputs, cards, etc.)",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "version:minor": "npm version minor -m 'chore: release v%s'",
+    "version:major": "npm version major -m 'chore: release v%s'"
+  },
+  "keywords": [
+    "react-native",
+    "design-system",
+    "atomic-design",
+    "ui-components",
+    "atoms",
+    "material-design-3"
+  ],
+  "author": "Ümit UZ <umit@umituz.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/umituz/react-native-design-system-atoms"
+  },
+  "peerDependencies": {
+    "@umituz/react-native-icon": "*",
+    "@umituz/react-native-theme": "*",
+    "@umituz/react-native-typography": "*",
+    "@expo/vector-icons": ">=14.0.0",
+    "@gorhom/bottom-sheet": ">=5.0.0",
+    "@react-native-community/datetimepicker": "^8.5.0",
+    "@umituz/react-native-bottom-sheet": "*",
+    "expo-linear-gradient": "^15.0.7",
+    "lucide-react-native": ">=0.468.0",
+    "react": ">=18.2.0 || ^19.0.0",
+    "react-native": ">=0.74.0",
+    "react-native-gesture-handler": ">=2.16.0",
+    "react-native-reanimated": "~3.10.1",
+    "react-native-safe-area-context": "^5.6.2",
+    "react-native-svg": ">=13.0.0"
+  },
+  "peerDependenciesMeta": {
+    "expo-linear-gradient": {
+      "optional": true
+    },
+    "lucide-react-native": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.45",
+    "@types/react-native": "^0.73.0",
+    "react": "^18.2.0",
+    "react-native": "^0.74.0",
+    "typescript": "^5.3.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ]
+}
+
