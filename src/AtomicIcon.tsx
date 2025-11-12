@@ -96,7 +96,7 @@ export const AtomicIcon: React.FC<IconProps> = ({
 
   // Get icon component from Lucide
   // Use type assertion to handle string index access
-  const IconComponent = (LucideIcons as Record<string, React.ComponentType<{
+  const IconComponent = (LucideIcons as unknown as Record<string, React.ComponentType<{
     size?: number;
     color?: string;
     strokeWidth?: number;
