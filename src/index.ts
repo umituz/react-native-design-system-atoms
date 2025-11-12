@@ -44,8 +44,8 @@ import {
 import {
   AtomicIcon,
   type AtomicIconProps,
-  type AtomicIconSize,
-  type AtomicIconColor,
+  type IconSize,
+  type IconColor,
   type IconName,
 } from './AtomicIcon';
 
@@ -185,8 +185,8 @@ export {
 export {
   AtomicIcon,
   type AtomicIconProps,
-  type AtomicIconSize,
-  type AtomicIconColor,
+  type IconSize,
+  type IconColor,
   type IconName,
 };
 

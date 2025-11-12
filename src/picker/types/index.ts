@@ -1,5 +1,5 @@
 import { ViewStyle, TextStyle } from 'react-native';
-import { AtomicIconColor } from '../../AtomicIcon';
+import { IconColor } from '../../AtomicIcon';
 
 /**
  * Picker option item

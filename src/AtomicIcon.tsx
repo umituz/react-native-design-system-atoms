@@ -190,6 +190,4 @@ const styles = StyleSheet.create({
 
 // Re-export types with Atomic naming convention for backward compatibility
 export type AtomicIconProps = IconProps;
-export type AtomicIconSize = IconSize;
-export type AtomicIconColor = IconColor;
-// IconName is the standard type - AtomicIconName removed for consistency
+// IconSize, IconColor, and IconName are the standard types - Atomic prefixes removed for consistency

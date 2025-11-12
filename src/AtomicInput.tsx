@@ -3,7 +3,7 @@ import { View, TextInput, Pressable, StyleSheet, StyleProp, ViewStyle, TextStyle
 import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
 import { AtomicIcon } from './AtomicIcon';
 import { AtomicText } from './AtomicText';
-import type { IconName, AtomicIconSize } from './AtomicIcon';
+import type { IconName, IconSize } from './AtomicIcon';
 
 export type AtomicInputVariant = 'outlined' | 'filled' | 'flat';
 export type AtomicInputState = 'default' | 'error' | 'success' | 'disabled';

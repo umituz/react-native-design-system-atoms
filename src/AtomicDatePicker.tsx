@@ -49,7 +49,7 @@ import {
 } from 'react-native';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
-import { AtomicIcon, type AtomicIconColor } from './AtomicIcon';
+import { AtomicIcon, type IconColor } from './AtomicIcon';
 
 /**
  * Props for AtomicDatePicker component
@@ -171,7 +171,7 @@ export const AtomicDatePicker: React.FC<AtomicDatePickerProps> = ({
   /**
    * Determine icon color based on state
    */
-  const getIconColor = (): AtomicIconColor => {
+  const getIconColor = (): IconColor => {
     if (disabled) return 'secondary';
     if (error) return 'error';
     return 'primary';
