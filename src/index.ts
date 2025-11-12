@@ -326,11 +326,11 @@ export type AtomicComponentProps =
 export type AtomicVariants = {
   card: AtomicCardVariant;
   input: AtomicInputVariant;
-  icon: AtomicIconSize;
+  icon: IconSize;
 };
 
 // All color types for design system consistency
-export type AtomicColors = AtomicIconColor;
+export type AtomicColors = IconColor;
 
 /**
  * Atomic component utilities

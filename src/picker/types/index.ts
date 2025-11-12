@@ -30,7 +30,7 @@ export interface AtomicPickerProps {
   searchable?: boolean;
   clearable?: boolean;
   autoClose?: boolean;
-  color?: AtomicIconColor;
+  color?: IconColor;
   size?: PickerSize;
   modalTitle?: string;
   emptyMessage?: string;
