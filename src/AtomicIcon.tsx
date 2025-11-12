@@ -95,12 +95,13 @@ export const AtomicIcon: React.FC<IconProps> = ({
   const tokens = useAppDesignTokens();
 
   // Get icon component from Lucide
-  const IconComponent = LucideIcons[name] as React.ComponentType<{
+  // Use type assertion to handle string index access
+  const IconComponent = (LucideIcons as Record<string, React.ComponentType<{
     size?: number;
     color?: string;
     strokeWidth?: number;
     style?: StyleProp<ViewStyle>;
-  }>;
+  }>>)[name];
 
   if (!IconComponent) {
     /* eslint-disable-next-line no-console */

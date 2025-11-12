@@ -47,6 +47,7 @@ import {
   type AtomicIconSize,
   type AtomicIconColor,
   type AtomicIconName,
+  type IconName,
 } from './AtomicIcon';
 
 import {
