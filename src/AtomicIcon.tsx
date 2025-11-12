@@ -24,7 +24,9 @@ export type IconColor =
   | 'onSecondary'
   | 'textInverse';
 
-export type IconName = keyof typeof LucideIcons | string;
+// IconName type: Accepts both Lucide icon names and string for flexibility
+// Runtime validation ensures only valid Lucide icons are used
+export type IconName = string;
 
 const ICON_SIZES: Record<IconSize, number> = {
   xs: 16,
@@ -135,6 +137,7 @@ export const AtomicIcon: React.FC<IconProps> = ({
     iconColor = tokens.colors.textPrimary;
   }
 
+  // IconComponent props - Lucide icons don't accept accessibilityLabel directly
   const iconElement = (
     <IconComponent
       size={iconSize}
