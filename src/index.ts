@@ -186,6 +186,7 @@ export {
   type AtomicIconProps,
   type AtomicIconSize,
   type AtomicIconColor,
+  type AtomicIconName,
 };
 
 export {
