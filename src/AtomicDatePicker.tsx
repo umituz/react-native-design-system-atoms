@@ -44,9 +44,12 @@ import {
   TouchableOpacity,
   StyleSheet,
   Platform,
+  Modal,
+  Pressable,
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useAppDesignTokens } from '@umituz/react-native-design-system-theme';
 import { AtomicIcon, type IconColor } from './AtomicIcon';
@@ -103,11 +106,12 @@ export const AtomicDatePicker: React.FC<AtomicDatePickerProps> = ({
   style,
 }) => {
   const tokens = useAppDesignTokens();
+  const insets = useSafeAreaInsets();
   const [showPicker, setShowPicker] = useState(false);
 
   /**
    * Handle date/time change in picker
-   * On Android, directly apply the change. On iOS, show picker and apply on confirm.
+   * On Android, directly apply the change. On iOS, show picker in modal and apply on confirm.
    */
   const handleChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
     if (Platform.OS === 'android') {
@@ -116,9 +120,13 @@ export const AtomicDatePicker: React.FC<AtomicDatePickerProps> = ({
         onChange(selectedDate);
       }
     } else {
-      // iOS: Show picker inline, user confirms with Done button
+      // iOS: Update value while picker is open
       if (event.type === 'set' && selectedDate) {
         onChange(selectedDate);
+      }
+      // iOS: Close on dismiss (swipe down)
+      if (event.type === 'dismissed') {
+        setShowPicker(false);
       }
     }
   };
@@ -223,17 +231,52 @@ export const AtomicDatePicker: React.FC<AtomicDatePickerProps> = ({
       )}
 
       {/* Native DateTimePicker - Simple and reliable */}
-      {showPicker && (
+      {Platform.OS === 'ios' && showPicker ? (
+        <Modal
+          visible={showPicker}
+          transparent
+          animationType="slide"
+          onRequestClose={() => setShowPicker(false)}
+        >
+          <Pressable
+            style={styles.modalBackdrop}
+            onPress={() => setShowPicker(false)}
+          >
+            <Pressable
+              style={styles.modalContent}
+              onPress={(e) => e.stopPropagation()}
+            >
+              <View style={styles.modalHeader}>
+                <Pressable
+                  onPress={() => setShowPicker(false)}
+                  style={styles.doneButton}
+                >
+                  <Text style={styles.doneButtonText}>Done</Text>
+                </Pressable>
+              </View>
+              <DateTimePicker
+                value={value ?? new Date()}
+                mode={mode}
+                display="spinner"
+                onChange={handleChange}
+                minimumDate={minimumDate}
+                maximumDate={maximumDate}
+                testID={testID ? `${testID}-picker` : undefined}
+              />
+            </Pressable>
+          </Pressable>
+        </Modal>
+      ) : showPicker ? (
         <DateTimePicker
           value={value ?? new Date()}
           mode={mode}
-          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+          display="default"
           onChange={handleChange}
           minimumDate={minimumDate}
           maximumDate={maximumDate}
           testID={testID ? `${testID}-picker` : undefined}
         />
-      )}
+      ) : null}
     </View>
   );
 };
@@ -288,6 +331,34 @@ const getStyles = (tokens: ReturnType<typeof useAppDesignTokens>) => {
       color: tokens.colors.error,
       marginTop: tokens.spacing.xs,
       marginLeft: tokens.spacing.xs,
+    },
+    modalBackdrop: {
+      flex: 1,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      justifyContent: 'flex-end',
+    },
+    modalContent: {
+      backgroundColor: tokens.colors.surface,
+      borderTopLeftRadius: 16,
+      borderTopRightRadius: 16,
+      paddingBottom: insets.bottom,
+    },
+    modalHeader: {
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+      paddingHorizontal: tokens.spacing.md,
+      paddingVertical: tokens.spacing.sm,
+      borderBottomWidth: 1,
+      borderBottomColor: tokens.colors.border,
+    },
+    doneButton: {
+      paddingVertical: tokens.spacing.sm,
+      paddingHorizontal: tokens.spacing.md,
+    },
+    doneButtonText: {
+      fontSize: tokens.typography.bodyLarge.fontSize,
+      fontWeight: tokens.typography.semibold,
+      color: tokens.colors.primary,
     },
   });
 };
