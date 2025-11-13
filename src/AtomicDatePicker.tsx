@@ -243,7 +243,7 @@ export const AtomicDatePicker: React.FC<AtomicDatePickerProps> = ({
             onPress={() => setShowPicker(false)}
           >
             <Pressable
-              style={styles.modalContent}
+              style={[styles.modalContent, { paddingBottom: insets.bottom }]}
               onPress={(e) => e.stopPropagation()}
             >
               <View style={styles.modalHeader}>
@@ -341,7 +341,7 @@ const getStyles = (tokens: ReturnType<typeof useAppDesignTokens>) => {
       backgroundColor: tokens.colors.surface,
       borderTopLeftRadius: 16,
       borderTopRightRadius: 16,
-      paddingBottom: insets.bottom,
+      // paddingBottom will be set inline with insets.bottom
     },
     modalHeader: {
       flexDirection: 'row',
