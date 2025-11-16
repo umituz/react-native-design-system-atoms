@@ -128,10 +128,6 @@ import {
   type AtomicNumberInputProps,
 } from './AtomicNumberInput';
 
-import {
-  AtomicDatePicker,
-  type AtomicDatePickerProps,
-} from './AtomicDatePicker';
 
 import {
   AtomicPicker,
@@ -269,10 +265,6 @@ export {
   type AtomicNumberInputProps,
 };
 
-export {
-  AtomicDatePicker,
-  type AtomicDatePickerProps,
-};
 
 export {
   AtomicPicker,
@@ -317,7 +309,6 @@ export type AtomicComponentProps =
   | AtomicFilterProps
   | AtomicTouchableProps
   | AtomicNumberInputProps
-  | AtomicDatePickerProps
   | AtomicPickerProps
   | AtomicSearchBarProps
   | AtomicSortProps;
@@ -427,7 +418,6 @@ const defaultExport = {
   AtomicFilter,
   AtomicTouchable,
   AtomicNumberInput,
-  AtomicDatePicker,
   AtomicPicker,
   AtomicSearchBar,
   AtomicSort,
