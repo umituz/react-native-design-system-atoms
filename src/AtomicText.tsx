@@ -28,7 +28,7 @@ export const AtomicText: React.FC<AtomicTextProps> = ({
   const tokens = useAppDesignTokens();
 
   // Get typography style from tokens
-  const typographyStyle = tokens.typography[type];
+  const typographyStyle = (tokens.typography as Record<string, any>)[type];
 
   // Get color from tokens or use custom color using utility function
   const resolvedColor = getTextColor(color, tokens);

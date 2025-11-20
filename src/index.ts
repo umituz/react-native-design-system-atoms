@@ -42,6 +42,14 @@ import {
 } from './AtomicInput';
 
 import {
+  AtomicTextArea,
+  type AtomicTextAreaProps,
+  type AtomicTextAreaVariant,
+  type AtomicTextAreaState,
+  type AtomicTextAreaSize,
+} from './AtomicTextArea';
+
+import {
   AtomicIcon,
   type AtomicIconProps,
   type IconSize,
@@ -176,6 +184,14 @@ export {
   type AtomicInputVariant,
   type AtomicInputState,
   type AtomicInputSize,
+};
+
+export {
+  AtomicTextArea,
+  type AtomicTextAreaProps,
+  type AtomicTextAreaVariant,
+  type AtomicTextAreaState,
+  type AtomicTextAreaSize,
 };
 
 export {
@@ -404,6 +420,7 @@ const defaultExport = {
   AtomicText,
   AtomicCard,
   AtomicInput,
+  AtomicTextArea,
   AtomicIcon,
   AtomicImage,
   AtomicSwitch,
