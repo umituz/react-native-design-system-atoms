@@ -22,7 +22,7 @@ npm install @umituz/react-native-design-system-atoms
 ### Peer Dependencies
 
 ```bash
-npm install @umituz/react-native-design-system-theme @umituz/react-native-icon @umituz/react-native-design-system-typography
+npm install @umituz/react-native-design-system-theme @umituz/react-native-design-system-typography
 npm install react@18.3.1 react-native@0.76.3 react-native-reanimated@~3.10.1 react-native-svg@^15.0.0
 ```
 
