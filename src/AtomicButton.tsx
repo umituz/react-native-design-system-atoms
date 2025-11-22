@@ -38,8 +38,25 @@ export const AtomicButton: React.FC<AtomicButtonProps> = ({
   const tokens = useAppDesignTokens();
 
   const handlePress = () => {
+    /* eslint-disable-next-line no-console */
+    if (__DEV__) {
+      console.log("[AtomicButton] handlePress called", {
+        disabled,
+        testID,
+        variant,
+      });
+    }
     if (!disabled) {
+      /* eslint-disable-next-line no-console */
+      if (__DEV__) {
+        console.log("[AtomicButton] Calling onPress()");
+      }
       onPress();
+    } else {
+      /* eslint-disable-next-line no-console */
+      if (__DEV__) {
+        console.log("[AtomicButton] Button is disabled, not calling onPress()");
+      }
     }
   };
 
@@ -185,7 +202,16 @@ export const AtomicButton: React.FC<AtomicButtonProps> = ({
   return (
     <TouchableOpacity
       style={containerStyle}
-      onPress={handlePress}
+      onPress={() => {
+        /* eslint-disable-next-line no-console */
+        if (__DEV__) {
+          console.log("[AtomicButton] TouchableOpacity onPress triggered", {
+            testID,
+            disabled,
+          });
+        }
+        handlePress();
+      }}
       activeOpacity={0.8}
       disabled={disabled}
       testID={testID}
