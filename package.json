@@ -1,6 +1,6 @@
 {
   "name": "@umituz/react-native-design-system-atoms",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "Atomic design components for React Native - Primitive UI components (buttons, inputs, cards, etc.)",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
