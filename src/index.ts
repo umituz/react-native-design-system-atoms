@@ -163,10 +163,6 @@ import {
 
 // STEP 2: Re-export all components (for named imports)
 export {
-  AtomicDatePicker,
-  type AtomicDatePickerProps,
-};
-export {
   AtomicButton,
   type AtomicButtonProps,
   type ButtonVariant,
