@@ -145,6 +145,11 @@ import {
 } from './AtomicPicker';
 
 import {
+  AtomicDatePicker,
+  type AtomicDatePickerProps,
+} from './AtomicDatePicker';
+
+import {
   AtomicSearchBar,
   type AtomicSearchBarProps,
 } from './AtomicSearchBar';
@@ -157,6 +162,10 @@ import {
 } from './AtomicSort';
 
 // STEP 2: Re-export all components (for named imports)
+export {
+  AtomicDatePicker,
+  type AtomicDatePickerProps,
+};
 export {
   AtomicButton,
   type AtomicButtonProps,
@@ -287,6 +296,11 @@ export {
   type AtomicPickerProps,
   type PickerOption,
   type PickerSize,
+};
+
+export {
+  AtomicDatePicker,
+  type AtomicDatePickerProps,
 };
 
 export {

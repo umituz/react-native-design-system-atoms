@@ -185,16 +185,7 @@ export const AtomicButton: React.FC<AtomicButtonProps> = ({
   return (
     <TouchableOpacity
       style={containerStyle}
-      onPress={() => {
-        /* eslint-disable-next-line no-console */
-        if (__DEV__) {
-          console.log("[AtomicButton] TouchableOpacity onPress triggered", {
-            testID,
-            disabled,
-          });
-        }
-        handlePress();
-      }}
+      onPress={handlePress}
       activeOpacity={0.8}
       disabled={disabled}
       testID={testID}
